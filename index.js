@@ -1,4 +1,6 @@
 const express = require('express');
+const productsRoutes = require('./routes/products');
+const categoriesRoutes = require('./routes/categories');
 
 const app = express();
 
@@ -7,20 +9,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/products', (req, res) => {
-  res.send('Here is the list of all products.');
-});
-
-app.post('/products', (req, res) => {
-  res.send('A new product has been added.');
-});
-
-app.get('/categories', (req, res) => {
-  res.send('Here is the list of all categories.');
-});
-
-app.post('/categories', (req, res) => {
-  res.send('A new category has been created.');
-});
+app.use('/products', productsRoutes);
+app.use('/categories', categoriesRoutes);
 
 app.listen(4000);
